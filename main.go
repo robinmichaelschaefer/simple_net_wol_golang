@@ -36,13 +36,13 @@ func main() {
 	*/
 
 	// Write 0xFF six times as first step (we only write the payload, the rest of the network packet will be created by go net)
-	magicNetPacket := make([]byte, 6)
+	magicNetPacket := make([]byte, 102)
 	for i := 0; i < 6; i++ {
 		magicNetPacket[i] = 0xFF
 	}
 
 	// Add Mac-Address 16 times
-	for i := 6; i < 16; i++ {
+	for i := 6; i < 102; i += 6 {
 		copy(magicNetPacket[i:i+6], mac)
 	}
 
