@@ -1,6 +1,8 @@
 # simple_net_wol_golang
 This is a exremtly simple cli tool written in Go to send a Wake-On-Lan packet via broadcast to a MAC address.
 
+Caution: Never worked with go before so it might be a weird. 
+
 ## Prerequisites
 * [Golang](https://go.dev/)
 
