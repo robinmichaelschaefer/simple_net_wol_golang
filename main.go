@@ -14,7 +14,7 @@ func main() {
 	const broadCastAddr = "255.255.255.255"
 
 	// Convert macAddr in Bytes
-	mac, err := hex.DecodeString(macAddr)
+	macAddrBin, err := hex.DecodeString(macAddr)
 	if (err != nil) {
 		fmt.Println("Error converting (string) macAddr to byte representation")
 		os.Exit(1)
@@ -43,7 +43,20 @@ func main() {
 
 	// Add Mac-Address 16 times
 	for i := 6; i < 102; i += 6 {
-		copy(magicNetPacket[i:i+6], mac)
+		copy(magicNetPacket[i:i+6], macAddrBin)
 	}
+
+	// Open UDP Connection
+	connection, err := net.DialUDP("udp", nil, &net.UDPAddr{IP: broadcastIp, Port: 9})
+	if (err != nil) {
+		fmt.Println("Error opening UDP connection")
+		os.Exit(1)
+	}
+
+	connection.Write(magicNetPacket[:102])
+	connection.Close()
+
+	fmt.Println("Sent wol packet to: ", macAddr)
+	os.Exit(0)
 
 }
