@@ -47,7 +47,7 @@ func main() {
 	}
 
 	// Open UDP Connection
-	connection, err := net.DialUDP("udp", nil, &net.UDPAddr{IP: broadcastIp, Port: 9})
+	connection, err := net.DialUDP("udp", nil, &net.UDPAddr{IP: broadcastDest, Port: 9})
 	if (err != nil) {
 		fmt.Println("Error opening UDP connection")
 		os.Exit(1)
