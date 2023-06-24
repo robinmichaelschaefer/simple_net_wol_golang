@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"encoding/hex"
 	"os"
+	"net"
 )
 
 func main() {
@@ -19,6 +20,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("%v", mac) // FIXME
+	// "Convert" and parse broadcastip
+	broadcastDest := net.ParseIP(broadCastAddr)
+	if (broadcastDest == nil) {
+		fmt.Println("Error parsing broadcastIp")
+		os.Exit(1)
+	}
+
 
 }
