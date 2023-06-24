@@ -28,11 +28,11 @@ func main() {
 	}
 
 	/*
-		Create the network packet
-		https://datatracker.ietf.org/doc/html/draft-cheshire-edns0-owner-option-01
-		o  Sync sequence: 48 binary 1s (i.e. 6 bytes of 0xFF)
-		o  Sixteen repetitions of the 48-bit MAC address of the sleeping server's network interface
-		o  Optional 32-bit or 48-bit 'password'
+	Create the network packet
+	https://datatracker.ietf.org/doc/html/draft-cheshire-edns0-owner-option-01
+	o  Sync sequence: 48 binary 1s (i.e. 6 bytes of 0xFF)
+	o  Sixteen repetitions of the 48-bit MAC address of the sleeping server's network interface
+	o  Optional 32-bit or 48-bit 'password'
 	*/
 
 	// Write 0xFF six times as first step (we only write the payload, the rest of the network packet will be created by go net)
