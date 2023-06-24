@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"encoding/hex"
+	"os"
 )
 
 func main() {
@@ -15,6 +16,9 @@ func main() {
 	mac, err := hex.DecodeString(macAddr)
 	if (err != nil) {
 		fmt.Println("Error converting (string) macAddr to byte representation")
+		os.Exit(1)
 	}
+
+	fmt.Printf("%v", mac) // FIXME
 
 }
