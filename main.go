@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"encoding/hex"
 	"os"
 	"net"
@@ -16,14 +15,14 @@ func main() {
 	// Convert macAddr in Bytes
 	macAddrBin, err := hex.DecodeString(macAddr)
 	if (err != nil) {
-		fmt.Println("Error converting (string) macAddr to byte representation")
+		println("Error converting (string) macAddr to byte representation")
 		os.Exit(1)
 	}
 
 	// "Convert" and parse broadcastip
 	broadcastDest := net.ParseIP(broadCastAddr)
 	if (broadcastDest == nil) {
-		fmt.Println("Error parsing broadcastIp")
+		println("Error parsing broadcastIp")
 		os.Exit(1)
 	}
 
@@ -49,14 +48,14 @@ func main() {
 	// Open UDP Connection
 	connection, err := net.DialUDP("udp", nil, &net.UDPAddr{IP: broadcastDest, Port: 9})
 	if (err != nil) {
-		fmt.Println("Error opening UDP connection")
+		println("Error opening UDP connection")
 		os.Exit(1)
 	}
 
 	connection.Write(magicNetPacket[:102])
 	connection.Close()
 
-	fmt.Println("Sent wol packet to: ", macAddr)
+	println("Sent wol packet to: ", macAddr)
 	os.Exit(0)
 
 }
