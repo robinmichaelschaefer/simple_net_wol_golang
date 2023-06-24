@@ -41,4 +41,9 @@ func main() {
 		magicNetPacket[i] = 0xFF
 	}
 
+	// Add Mac-Address 16 times
+	for i := 6; i < 16; i++ {
+		copy(magicNetPacket[i:i+6], mac)
+	}
+
 }
