@@ -52,7 +52,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	connection.Write(magicNetPacket[:102])
+	connection.Write(magicNetPacket)
 	connection.Close()
 
 	println("Sent wol packet to: ", macAddr)
